@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- http://garden.zendesk.com -->
+  <link rel="stylesheet" href="https://assets.zendesk.com/apps/sdk-assets/css/2/zendesk_garden.css" type="text/css">
+
+  <title>Product feedback survey example, jQuery Survey Library Example</title>
+  <script src="https://unpkg.com/jquery"></script>
+  <script src="https://surveyjs.azureedge.net/1.0.25/survey.jquery.js"></script>
+  <link href="https://surveyjs.azureedge.net/1.0.25/survey.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="surveyElement"></div>
+  <div id="surveyResult"></div>
+
+  <!-- https://github.com/zendesk/zendesk_app_framework_sdk -->
+  <script type="text/javascript" src="https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js"></script>
+  <script>
+    // Initialise the Zendesk JavaScript API client
+    // https://developer.zendesk.com/apps/docs/apps-v2
+    var client = ZAFClient.init();
+    // client.invoke('resize', {
+    //   width: '800px',
+    //   height: '600px'
+    // });
+  </script>
+
+  <script type="text/javascript" src="./survey.js"></script>
+</body>
+
+</html>

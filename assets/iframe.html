@@ -8,6 +8,7 @@
 
 <body>
   <h2 class="u-gamma">Hello, World from SurveyJS!</h2>
+  <button onclick="openModal();">Run Survey</button>
   <!-- https://github.com/zendesk/zendesk_app_framework_sdk -->
   <script type="text/javascript" src="https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js"></script>
   <script>
@@ -18,6 +19,23 @@
       width: '100%',
       height: '200px'
     });
+
+    function openModal() {
+      client.invoke('instances.create', {
+        location: 'modal',
+        url: 'assets/survey.html'
+      }).then(function (modalContext) {
+        // The modal is on the screen now!
+        var modalClient = client.instance(modalContext['instances.create'][0].instanceGuid);
+        modalClient.invoke('resize', {
+          width: '800px',
+          height: '600px'
+        });
+        modalClient.on('modal.close', function () {
+          // The modal has been closed.
+        });
+      });
+    }
   </script>
 </body>
 
