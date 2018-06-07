@@ -18,6 +18,7 @@
 
 <body>
   <div id="surveyContainer">
+    <div id="manage" data-bind="template: 'surveys-manage'"></div>
     <div id="editorElement"></div>
   </div>
   <!-- https://github.com/zendesk/zendesk_app_framework_sdk -->
@@ -33,6 +34,16 @@
 
     var editorOptions = {};
     var editor = new SurveyEditor.SurveyEditor("editorElement", editorOptions);
+
+    client.metadata().then(function (metadata) {
+      var apikey = metadata.settings.apikey;
+      if (!!apikey) {
+        ko.applyBindings(
+          new SurveyEditor.SurveysManager("https://dxsurvey.com", apikey, editor),
+          document.getElementById("manage")
+        );
+      }
+    });
   </script>
 </body>
 
