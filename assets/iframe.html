@@ -7,7 +7,6 @@
 </head>
 
 <body>
-  <h2 class="u-gamma">Hello, World from SurveyJS!</h2>
   <button onclick="openModal();">Run Survey</button>
   <!-- https://github.com/zendesk/zendesk_app_framework_sdk -->
   <script type="text/javascript" src="https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js"></script>
@@ -20,11 +19,29 @@
       height: '200px'
     });
 
+    var hasSurvey = false;
+
+    client.request('/api/v2/organizations.json').then(
+      function (result) {
+        if (result.count > 0) {
+          hasSurvey = !!result.organizations[0].organization_fields.surveyid;
+        }
+      },
+      function (response) {
+        console.error(response.responseText);
+      }
+    );
+
     function openModal() {
       client.invoke('instances.create', {
         location: 'modal',
         url: 'assets/survey.html'
       }).then(function (modalContext) {
+        if (!hasSurvey) {
+          alert("There is no surveyId for your organization.");
+          return;
+        }
+
         // The modal is on the screen now!
         var modalClient = client.instance(modalContext['instances.create'][0].instanceGuid);
         modalClient.invoke('resize', {
