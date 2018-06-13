@@ -26,6 +26,10 @@
         if (result.count > 0) {
           hasSurvey = !!result.organizations[0].organization_fields.surveyid;
         }
+        if (!hasSurvey) {
+          alert("There is no surveyId for your organization.");
+          return;
+        }
       },
       function (response) {
         console.error(response.responseText);
@@ -37,11 +41,6 @@
         location: 'modal',
         url: 'assets/survey.html'
       }).then(function (modalContext) {
-        if (!hasSurvey) {
-          alert("There is no surveyId for your organization.");
-          return;
-        }
-
         // The modal is on the screen now!
         var modalClient = client.instance(modalContext['instances.create'][0].instanceGuid);
         modalClient.invoke('resize', {
