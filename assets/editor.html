@@ -32,6 +32,7 @@
 
     var editorOptions = {};
     var editor = new SurveyEditor.SurveyEditor("editorElement", editorOptions);
+    var manager = null;
 
     editor
       .toolbarItems
@@ -50,7 +51,7 @@
                   data: {
                     organization: {
                       organization_fields: {
-                        surveyid: editor.surveyid || ""
+                        surveyid: manager.currentSurvey() && manager.currentSurvey().id || ""
                       }
                     }
                   }
@@ -67,8 +68,9 @@
     client.metadata().then(function (metadata) {
       var apikey = metadata.settings.apikey;
       if (!!apikey) {
+        manager = new SurveyEditor.SurveysManager("https://dxsurvey.com", apikey, editor);
         ko.applyBindings(
-          new SurveyEditor.SurveysManager("https://dxsurvey.com", apikey, editor),
+          manager,
           document.getElementById("manage")
         );
       }
