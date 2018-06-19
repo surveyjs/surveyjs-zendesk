@@ -1,8 +1,9 @@
 {
   "app": {
-    "name": "Zen Tunes",
-    "short_description": "Play the famous zen tunes in your help desk.",
-    "long_description": "Play the famous zen tunes in your help desk and \n listen to the beats it has to offer.",
+    "name": "SurveyJS",
+    "short_description": "Create your own survey system",
+    "long_description":
+      "Easy to use, drag & drop Survey Builder with myriad options. It is based on popular in JavaScript developer community SurveyJS Library and Builder (Editor).",
     "installation_instructions": "Simply click install."
   }
 }
