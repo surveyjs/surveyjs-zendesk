@@ -1,0 +1,10 @@
+{
+  "targets": {
+    "organization_fields": {
+      "surveyid": {
+        "type": "text",
+        "title": "Survey Id"
+      }
+    }
+  }
+}

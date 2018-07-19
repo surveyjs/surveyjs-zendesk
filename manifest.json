@@ -18,7 +18,6 @@
       "name": "apikey",
       "type": "text",
       "required": true,
-      "secure": true,
       "default": ""
     }
   ],
